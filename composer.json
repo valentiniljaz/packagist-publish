@@ -1,6 +1,6 @@
 {
     "name": "valentiniljaz/packagist-publish",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description": "Publish your package to Packagist.com using API. Very useful for PHP monorepos.",
     "homepage": "https://github.com/valentiniljaz/packagist-publish",
     "type": "library",
@@ -11,18 +11,18 @@
             "email": "valentin@progmbh.com"
         }
     ],
-    "minimum-stability": "dev",
+    "prefer-stable": true,
     "bin": [
         "bin/packagist-publish",
         "bin/packagist-archive"
     ],
     "require": {
         "php": ">=7.4",
-        "splitbrain/php-cli": "dev-master",
         "ext-json": "*",
+        "ext-fileinfo": "*",
+        "splitbrain/php-cli": "^1.1.8",
         "symfony/process": "6.1.x-dev",
-        "guzzlehttp/guzzle": "7.4.x-dev",
-        "ext-fileinfo": "*"
+        "guzzlehttp/guzzle": "7.4.x-dev"
     },
     "autoload": {
         "psr-4": {
