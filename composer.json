@@ -1,6 +1,6 @@
 {
     "name": "valentiniljaz/packagist-publish",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "Publish your package to Packagist.com using API. Very useful for PHP monorepos.",
     "homepage": "https://github.com/valentiniljaz/packagist-publish",
     "type": "library",
@@ -13,7 +13,8 @@
     ],
     "minimum-stability": "dev",
     "bin": [
-        "bin/publish", "bin/archive"
+        "bin/packagist-publish",
+        "bin/packagist-archive"
     ],
     "require": {
         "php": ">=7.4",

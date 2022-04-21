@@ -44,9 +44,10 @@ class PublishCommand
         $archive = (new ArchiveCommand())->run($composerFile, $archiveFile);
         $packageName = (new ComposerJson($archive->getPackageRoot() . DS . 'composer.json'))->getName();
 
-        (new Packagist())->publish($packageName, $archive->getArchiveFile(), $apiKey, $apiSecret);
+        $publishId = (new Packagist())->publish($packageName, $archive->getArchiveFile(), $apiKey, $apiSecret);
 
         return new PublishResult(
+            $publishId,
             $archive->getPackageRoot(),
             $packageName,
             $archive->getGitRoot(),

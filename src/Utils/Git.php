@@ -72,6 +72,7 @@ class Git
             $head .= ':' . ltrim(substr($packageRoot, strlen($gitRoot)), DS);
         }
         $process = new Process(['git', 'archive', '-o', $dest, $head]);
+        $process->setWorkingDirectory($gitRoot);
         $process->run();
 
         if (!$process->isSuccessful()) {

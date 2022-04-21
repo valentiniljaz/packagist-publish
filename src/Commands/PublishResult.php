@@ -4,6 +4,7 @@ namespace VI\PackagistPublish\Commands;
 
 class PublishResult
 {
+    private int $publishId;
     private string $packageRoot;
     private string $packageName;
     private string $gitRoot;
@@ -15,11 +16,25 @@ class PublishResult
      * @param string $gitRoot
      * @param string $archiveFile
      */
-    public function __construct(string $packageRoot, string $packageName, string $gitRoot, string $archiveFile) {
+    public function __construct(
+        int $publishId,
+        string $packageRoot,
+        string $packageName,
+        string $gitRoot,
+        string $archiveFile
+    ) {
+        $this->publishId = $publishId;
         $this->packageRoot = $packageRoot;
         $this->packageName = $packageName;
         $this->gitRoot = $gitRoot;
         $this->archiveFile = $archiveFile;
+    }
+
+    /**
+     * @return int
+     */
+    public function getPublishId(): int {
+        return $this->publishId;
     }
 
     /**

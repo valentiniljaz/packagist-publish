@@ -41,7 +41,7 @@ class Publish extends CLI
                     $options->getOpt('apiKey'),
                     $options->getOpt('apiSecret')
                 );
-                $this->info('Package ' . $publish->getPackageName() . ' was published');
+                $this->info('Package ' . $publish->getPackageName() . ' was published (id: ' . $publish->getPublishId() .')');
             } catch (Exception $e) {
                 $this->error($e->getMessage());
             }
