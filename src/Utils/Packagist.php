@@ -20,7 +20,7 @@ class Packagist
             strtoupper($method) . "\n"
             . $this->baseApi . "\n"
             . $urlPath . "\n"
-            . http_build_query($params, null, '&', PHP_QUERY_RFC3986);
+            . http_build_query($params, '', '&', PHP_QUERY_RFC3986);
         return base64_encode(
             hash_hmac('sha256', $stringToSign, $apiSecret, true)
         );

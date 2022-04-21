@@ -27,7 +27,7 @@ class ArchiveCommand
         if (is_string($destinationFile)) {
             if (file_exists($destinationFile)) {
                 if (is_dir($destinationFile)) {
-                    return $destinationFile . DS . $this->archiveName . '.zip';
+                    return $destinationFile . DS . $this->archiveName . '-' . time() . '.zip';
                 } else {
                     return $destinationFile;
                 }
@@ -35,7 +35,7 @@ class ArchiveCommand
                 return $destinationFile;
             }
         } else {
-            return $packageRoot . DS . $this->archiveName . '.zip';
+            return $packageRoot . DS . $this->archiveName . '-' . time() . '.zip';
         }
     }
 
