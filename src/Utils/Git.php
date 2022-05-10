@@ -69,14 +69,15 @@ class Git
     public function archive(string $gitRoot, string $packageRoot, string $dest) {
         $head = 'HEAD';
         if ($gitRoot !== $packageRoot) {
-            $head .= ':' . ltrim(substr($packageRoot, strlen($gitRoot)), DS);
+            // Get relative path from GIT root to current package root
+            $head .= ':' . ltrim(substr(realpath($packageRoot), strlen(realpath($gitRoot))), DS);
         }
         $process = new Process(['git', 'archive', '-o', $dest, $head]);
         $process->setWorkingDirectory($gitRoot);
         $process->run();
 
         if (!$process->isSuccessful()) {
-            throw new Exception('Git archive failed: ' . $process->getErrorOutput());
+            throw new Exception('Git archive failed (Git: ' . $gitRoot . '; Package: ' . $packageRoot . '; Dest: ' . $dest . '): ' . $process->getErrorOutput());
         }
     }
 }
