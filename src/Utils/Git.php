@@ -70,7 +70,8 @@ class Git
         $head = 'HEAD';
         if ($gitRoot !== $packageRoot) {
             // Get relative path from GIT root to current package root
-            $head .= ':' . ltrim(substr(realpath($packageRoot), strlen(realpath($gitRoot))), DS);
+            $relPath = substr(realpath($packageRoot), strlen(realpath($gitRoot)));
+            $head .= ':' . ltrim($relPath, DS);
         }
         $process = new Process(['git', 'archive', '-o', $dest, $head]);
         $process->setWorkingDirectory($gitRoot);

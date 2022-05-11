@@ -60,6 +60,7 @@ POST /api/packages/<package-name>/artifacts/
 - If path to composer.json is not specified by command option it'll take the first composer.json it finds from current working dir upwards.
 - For GIT ARCHIVE it needs to know the root of GIT repo; it'll take the first dir containing `.git` from current working dir upwards.
 - Default destination for archive is the location of dir containing composer.json.
+- If you need to ignore specific folder(s)/file(s) from archive you can use `.gitattributes` and set `export-ignore` attribute.
 
 ## Author
 

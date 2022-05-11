@@ -42,14 +42,15 @@ class PublishCommand
         $apiKey = $this->getEnvVar('KEY', $apiKey);
         $apiSecret = $this->getEnvVar('SECRET', $apiSecret);
         $archive = (new ArchiveCommand())->run($composerFile, $archiveFile);
-        $packageName = (new ComposerJson($archive->getPackageRoot() . DS . 'composer.json'))->getName();
+        $packageJson = new ComposerJson($archive->getPackageRoot() . DS . 'composer.json');
 
-        $publishId = (new Packagist())->publish($packageName, $archive->getArchiveFile(), $apiKey, $apiSecret);
+        $publishId = (new Packagist())->publish($packageJson->getName(), $archive->getArchiveFile(), $apiKey, $apiSecret);
 
         return new PublishResult(
             $publishId,
             $archive->getPackageRoot(),
-            $packageName,
+            $packageJson->getName(),
+            $packageJson->getVersion(),
             $archive->getGitRoot(),
             $archive->getArchiveFile()
         );

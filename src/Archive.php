@@ -40,7 +40,9 @@ class Archive extends CLI
                 $this->info('Archive of ' . $archive->getPackageRoot() . ' was saved to ' . $archive->getArchiveFile());
             } catch (Exception $e) {
                 $this->error($e->getMessage());
+                exit(1);
             }
         }
+        exit(0);
     }
 }
