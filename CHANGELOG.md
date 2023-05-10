@@ -1,3 +1,7 @@
+##[0.1.7]
+
+* fix Packagist signature to include body
+
 ##[0.1.6]
 
 * exit with code 1 when exception occurs

@@ -10,7 +10,7 @@ class Packagist
 {
     private string $baseApi = 'packagist.com';
 
-    private function genAuthHeader(string $method, string $urlPath, string $apiKey, string $apiSecret): string {
+    private function genAuthHeader(string $method, string $urlPath, string $apiKey, string $apiSecret, string $content = null): string {
         $cnonce = uniqid();
         $time = time();
 
@@ -19,6 +19,11 @@ class Packagist
             'key' => $apiKey,
             'timestamp' => $time
         ];
+        if ($content) {
+            $params['body'] = $content;
+        }
+        uksort($params, 'strcmp');
+
         $stringToSign =
             strtoupper($method) . "\n"
             . $this->baseApi . "\n"
@@ -48,13 +53,14 @@ class Packagist
 
         $method = 'POST';
         $urlPath = '/api/packages/' . $packageName . '/artifacts/';
+        $body = file_get_contents($archiveFile);
         $res = $client->request($method, $this->baseApi . $urlPath, [
             'headers' => [
-                'Authorization' => $this->genAuthHeader($method, $urlPath, $apiKey, $apiSecret),
+                'Authorization' => $this->genAuthHeader($method, $urlPath, $apiKey, $apiSecret, $body),
                 'Content-Type' => mime_content_type($archiveFile),
                 'X-Filename' => basename($archiveFile),
             ],
-            'body' => file_get_contents($archiveFile)
+            'body' => $body
         ]);
 
         if ($res->getStatusCode() === 201) {
