@@ -54,7 +54,7 @@ class Packagist
         $method = 'POST';
         $urlPath = '/api/packages/' . $packageName . '/artifacts/';
         $body = file_get_contents($archiveFile);
-        $res = $client->request($method, $this->baseApi . $urlPath, [
+        $res = $client->request($method, 'https://' . $this->baseApi . $urlPath, [
             'headers' => [
                 'Authorization' => $this->genAuthHeader($method, $urlPath, $apiKey, $apiSecret, $body),
                 'Content-Type' => mime_content_type($archiveFile),

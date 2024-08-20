@@ -1,3 +1,7 @@
+##[0.1.8]
+
+* add https:// to the APi call to packagist.com
+
 ##[0.1.7]
 
 * fix Packagist signature to include body
